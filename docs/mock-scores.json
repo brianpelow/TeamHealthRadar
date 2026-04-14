@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-04-14T04:47:30.647003",
+  "date": "2026-04-14",
+  "scores": [
+    {
+      "team": "payments-team",
+      "score": 81,
+      "band": "high",
+      "dora_score": 81,
+      "space_score": 81
+    },
+    {
+      "team": "platform-team",
+      "score": 81,
+      "band": "high",
+      "dora_score": 81,
+      "space_score": 81
+    },
+    {
+      "team": "trading-team",
+      "score": 81,
+      "band": "high",
+      "dora_score": 81,
+      "space_score": 81
+    }
+  ]
+}
