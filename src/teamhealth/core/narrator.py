@@ -13,8 +13,8 @@ def generate_narrative(score: TeamScore, industry: str = "fintech") -> str:
         return _fallback_narrative(score, industry)
 
     try:
-        import anthropic
-        client = anthropic.Anthropic(api_key=api_key)
+        from openai import OpenAI
+        client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=api_key)
 
         prompt = f"""You are an engineering director writing a weekly team health summary for a {industry} engineering team.
 
@@ -44,12 +44,12 @@ Write a 3-paragraph executive summary that:
 
 Be specific, data-driven, and actionable. Avoid generic platitudes."""
 
-        message = client.messages.create(
-            model="claude-sonnet-4-20250514",
+        message = client.chat.completions.create(
+            model="meta-llama/llama-3.1-8b-instruct:free",
             max_tokens=500,
             messages=[{"role": "user", "content": prompt}],
         )
-        return message.content[0].text
+        return message.choices[0].message.content
 
     except Exception:
         return _fallback_narrative(score, industry)
@@ -63,7 +63,7 @@ def _fallback_narrative(score: TeamScore, industry: str) -> str:
         "low": "needs attention",
     }.get(score.band, "moderate")
 
-    return f"""## {score.team} — Weekly Health Summary
+    return f"""## {score.team} â€” Weekly Health Summary
 
 **Overall status**: {status.title()} ({score.score}/100)
 

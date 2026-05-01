@@ -12,7 +12,7 @@ class RadarConfig(BaseModel):
     github_token: str = Field("", description="GitHub API token")
     jira_url: str = Field("", description="JIRA instance URL")
     jira_token: str = Field("", description="JIRA API token")
-    anthropic_api_key: str = Field("", description="Anthropic API key")
+    openrouter_api_key: str = Field("", description="OpenRouter API key")
     industry: str = Field("fintech", description="Industry context")
     lookback_days: int = Field(30, description="Days of history to analyse")
     host: str = Field("0.0.0.0", description="API server host")
@@ -24,7 +24,7 @@ class RadarConfig(BaseModel):
             github_token=os.environ.get("GITHUB_TOKEN", ""),
             jira_url=os.environ.get("JIRA_URL", ""),
             jira_token=os.environ.get("JIRA_TOKEN", ""),
-            anthropic_api_key=os.environ.get("ANTHROPIC_API_KEY", ""),
+            openrouter_api_key=os.environ.get("OPENROUTER_API_KEY", ""),
             industry=os.environ.get("RADAR_INDUSTRY", "fintech"),
         )
 
